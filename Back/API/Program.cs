@@ -70,7 +70,7 @@ builder.Services.AddAuthentication(Options =>
 .AddJwtBearer("Default", options =>
 {
     //var KeyString = builder.Configuration.GetValue<string>("JWT:Key");   
-    var KeyString = builder.Configuration.GetValue<string>("SecretKey");
+    var KeyString = builder.Configuration.GetValue<string>("JWT:Key");
     var KeyInBytes = Encoding.ASCII.GetBytes(KeyString);
     var Key = new SymmetricSecurityKey(KeyInBytes);
     options.TokenValidationParameters = new TokenValidationParameters

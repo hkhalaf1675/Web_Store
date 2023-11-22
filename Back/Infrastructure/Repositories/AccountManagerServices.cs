@@ -21,12 +21,14 @@ namespace Infrastructure.Services
         // -> check the role exists
 
         #region Injection
+        private readonly ECommerceDBContext context;
         private readonly UserManager<User> userManager;
         private readonly IConfiguration configuration;
         private readonly RoleManager<IdentityRole<int>> roleManager;
 
-        public AccountManagerServices(UserManager<User> _userManager, IConfiguration _configuration, RoleManager<IdentityRole<int>> _roleManager)
+        public AccountManagerServices(ECommerceDBContext _context, UserManager<User> _userManager, IConfiguration _configuration, RoleManager<IdentityRole<int>> _roleManager)
         {
+            context = _context;
             userManager = _userManager;
             configuration = _configuration;
             roleManager = _roleManager;
@@ -78,6 +80,48 @@ namespace Infrastructure.Services
                     return new AuthModel { Message = "can non add role" };
             }
 
+            await userManager.AddToRoleAsync(user, "Client");
+
+            #region Add the user Address to the Addresses Table
+
+            var addressDetails = registerDto?.Address?.Split(',');
+
+            var lastUser = await userManager.FindByEmailAsync(registerDto.Email);
+
+            if (addressDetails.Length < 3)
+            {
+                // if the address not consist from 3 parts will delete it
+                lastUser.Address = null;
+                await userManager.UpdateAsync(lastUser);
+
+                return new AuthModel { Message = "The User was Addede but the address and saved not saved" };
+            }
+
+            context.Address.Add(new Address
+            {
+                UserID = lastUser?.Id,
+                Street = addressDetails[0],
+                City = addressDetails[1],
+                Country = addressDetails[2]
+            });
+
+            context.Phones.Add(new Phone
+            {
+                UserID = lastUser?.Id,
+                PhoneNumber = registerDto.PhoneNumber
+            });
+
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return new AuthModel { Message = $"There is an error on saving Address and Phones : {ex.Message}" };
+            }
+
+            #endregion
+
             var jwtSecurityToken = await CreateJwtTokenAsync(user);
 
 
@@ -125,29 +169,24 @@ namespace Infrastructure.Services
         {
             var userClaims = await userManager.GetClaimsAsync(user);
             var roles = await userManager.GetRolesAsync(user);
-            var roleClaims = new List<Claim>();
 
             foreach (var role in roles)
-                roleClaims.Add(new Claim("roles", role));
+                userClaims.Add(new Claim(ClaimTypes.Role, role));
 
-            var claims = new[]
-            {
-                new Claim("Name", 
-                user.UserName),
-                new Claim("Email", user.Email),
-                new Claim("Address", user.Address),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            }
-            .Union(userClaims)
-            .Union(roleClaims);
+            userClaims.Add(new Claim(ClaimTypes.Name, user.UserName));
+            userClaims.Add(new Claim(ClaimTypes.GivenName, user.FullName));
+            userClaims.Add(new Claim(ClaimTypes.Email, user.Email));
+            userClaims.Add(new Claim(ClaimTypes.StreetAddress, user.Address));
+            userClaims.Add(new Claim(ClaimTypes.MobilePhone, user.PhoneNumber));
+            userClaims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+            userClaims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
 
             var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetValue<string>("JWT:Key")));
             var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
             var jwtSecurityToken = new JwtSecurityToken
                 (
-                    claims: claims,
+                    claims: userClaims,
                     expires: DateTime.UtcNow.AddMinutes(configuration.GetValue<double>("JWT:DurationInMinutes")),
                     signingCredentials: signingCredentials
                 );
