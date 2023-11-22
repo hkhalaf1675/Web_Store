@@ -1,0 +1,51 @@
+<div class="container-fluid row d-flex mt-2 mb-5">
+
+  <div class="col-12 col-md-5 d-flex justify-content-md-start justify-content-center">
+    <app-profile></app-profile>
+  </div>
+
+  <div class="col-12 col-md-7 bg-light d-flex align-items-center justify-content-center">
+
+    <div class="container-fluid shadow" style="min-height: 80dvh;">
+      <div class="fs-2 text-center">Wishlist</div>
+      <table class="table table-striped mt-2">
+        <thead>
+          <tr class="text-center">
+            <th class="whitespace-nowrap fs-5">Id</th>
+            <th class="whitespace-nowrap fs-5">Name</th>
+            <th class="whitespace-nowrap fs-5">Brand</th>
+            <th class="whitespace-nowrap fs-5">Model</th>
+            <th class="whitespace-nowrap fs-5">Price</th>
+            <th class="whitespace-nowrap fs-5">Image</th>
+            <th class="whitespace-nowrap fs-5"></th>
+            <th class="whitespace-nowrap fs-5"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="intro-x" *ngFor="let item of wishlist; let i = index" id="wishlistHolder">
+            <td>{{i + 1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.brandName}}</td>
+            <td>{{item.model}}</td>
+            <td>{{item.price}}</td>
+            <td>
+              <div id="img" class="text-center">
+                <img class="img-fluid" src="{{item.images[0] ? item.images[0] : 'assets/Images/NotFound.png'}}" alt="">
+              </div>
+            </td>
+            <td>
+              <button class="btn btn-dark" [routerLink]="['/products/details',item.id]">View</button>
+            </td>
+            <td>
+              <button class="btn btn-dark" (click)="deleteWishlist(item.id)">X</button>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>
+
+</div>

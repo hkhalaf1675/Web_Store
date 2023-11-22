@@ -1,0 +1,6 @@
+#img{
+  max-width: inherit;
+}
+#img img{
+  width: 100%;
+}

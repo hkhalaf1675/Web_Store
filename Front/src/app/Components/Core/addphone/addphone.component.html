@@ -1,0 +1,23 @@
+<div class="container d-flex justify-content-space-between m-0 p-0">
+  <div class="col-12 col-md-5 d-flex justify-content-md-start justify-content-center">
+    <app-profile></app-profile>
+  </div>
+
+  <div class="col-12 col-md-7 bg-light d-flex align-items-center justify-content-center">
+    <form class="shadow p-4" [formGroup]="fg" >
+
+      <div class=" mb-sm-5 bg-light coolinput mx-5 ">
+
+        <div class="form-floating m-2">
+          <input type="text" class="form-control" id="phone" placeholder="Phone" formControlName="phone">
+          <label for="phone">Phone</label>
+          <div class="text-danger form-text" *ngIf="phoneTouched &&  phoneRequired">Required Field!</div>
+          <div class="text-danger form-text" *ngIf="phoneTouched && !phoneRequired &&!phoneValid">Phone Must be 11 digits!</div>
+          <div class="text-success form-text" *ngIf="!phoneRequired && phoneValid">Looks Good!</div>
+        </div>
+
+        <button class="btn btn-dark text-white w-100 py-3 mt-4" type="submit" (click)="onSubmit($event)" >Add</button>
+      </div>
+    </form>
+  </div>
+</div>

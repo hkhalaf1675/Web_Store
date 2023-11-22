@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-center align-items-center m-5" style="min-height: 70vh;">
+
+  <form class="shadow p-4" [formGroup]="fg" (submit)="OnSubmit($event)">
+    <h1 class="h3 mb-3 fw-normal">Please sign Up</h1>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingName" placeholder="Full Name" formControlName="fullname">
+      <label for="floatingName">Full Name</label>
+      <div class="text-danger form-text"   *ngIf="fullnameTouched &&  fullnameRequired">Required Field!</div>
+      <div class="text-danger form-text"   *ngIf="fullnameTouched && !fullnameRequired &&!fullnameValid">At least 8 digits!</div>
+      <div class="text-success form-text" *ngIf="!fullnameRequired && fullnameValid">Looks Good!</div>
+    </div>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="username" placeholder="Username" formControlName="username">
+      <label for="username">Username</label>
+      <div class="text-danger form-text"   *ngIf="usernameTouched &&  usernameRequired">Required Field!</div>
+      <div class="text-danger form-text"   *ngIf="usernameTouched && !usernameRequired &&!usernameValid">At least 8 digits!</div>
+      <div class="text-success form-text" *ngIf="!usernameRequired && usernameValid">Looks Good!</div>
+    </div>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="address" placeholder="address" formControlName="address">
+      <label for="address">Address</label>
+      <div class="text-danger form-text"   *ngIf="addressTouched &&  addressRequired">Required Field!</div>
+      <div class="text-danger form-text"   *ngIf="addressTouched && !addressRequired &&!addressValid">Hint: Street, City, Country</div>
+      <div class="text-success form-text" *ngIf="!addressRequired && addressValid">Looks Good!</div>
+    </div>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="phone" placeholder="phone" formControlName="phone">
+      <label for="phone">Phone</label>
+      <div class="text-danger form-text"   *ngIf="phoneTouched &&  phoneRequired">Required Field!</div>
+      <div class="text-danger form-text"   *ngIf="phoneTouched && !phoneRequired &&!phoneValid">Phone Must be 11 digits!</div>
+      <div class="text-success form-text" *ngIf="!phoneRequired && phoneValid">Looks Good!</div>
+    </div>
+
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email">
+      <label for="floatingInput">Email address</label>
+      <div class="text-danger form-text" *ngIf="emailTouched && emailRequired">Required Field!</div>
+      <div class="text-danger form-text" *ngIf="emailTouched && !emailRequired &&!emailValid">Wrong Email!</div>
+      <div class="text-success form-text" *ngIf="!emailRequired && emailValid">Looks Good!</div>
+    </div>
+
+    <div class="form-floating ">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
+      <label for="floatingPassword">Password</label>
+      <div class="text-danger form-text" *ngIf="passTouched && passRequired">Required Field!</div>
+      <div class="text-danger form-text" *ngIf="passTouched && !passRequired && !passValid">At least 8 Digits!</div>
+      <div class="text-success form-text" *ngIf="!passRequired && passValid">Looks Good!</div>
+    </div>
+
+    <div class="form-floating  ">
+      <input type="password" class="form-control" id="Confirm Password" placeholder="Confirm Password" formControlName="confirm">
+      <label for="Confirm Password">Confirm Password</label>
+      <div class="text-danger form-text" *ngIf="confirmTouched && confirmRequired">Required Field!</div>
+      <div class="text-danger form-text" *ngIf="confirmTouched && !confirmRequired && !passValid">At least 8 Digits!</div>
+      <div class="text-danger form-text" *ngIf="IsMatchedPass | async">Not Matched Pass!</div>
+    </div>
+
+
+    <button class="btn btn-dark text-white w-100 py-3 mt-4" type="submit"><i
+      class="bi bi-check-circle-fill" > Submit</i></button>
+  </form>
+</div>
+

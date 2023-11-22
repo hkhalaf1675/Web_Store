@@ -1,0 +1,87 @@
+<div class="fluid-container">
+    <div class="row">
+        <div class="col-3">
+            <app-adminaside></app-adminaside>
+        </div>
+        <div class="col-9">
+            <div class="d-flex justify-content-center align-items-center m-5" style="min-height: 70vh;">
+
+                <form class="shadow p-4" [formGroup]="fg" (submit)="OnSubmit($event)">
+                  <h1 class="h3 mb-3 fw-normal">Add User</h1>
+
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingName" placeholder="Full Name" formControlName="fullname">
+                    <label for="floatingName">Full Name</label>
+                    <div class="text-danger form-text"   *ngIf="fullnameTouched &&  fullnameRequired">Required Field!</div>
+                    <div class="text-danger form-text"   *ngIf="fullnameTouched && !fullnameRequired &&!fullnameValid">At least 8 digits!</div>
+                    <div class="text-success form-text" *ngIf="!fullnameRequired && fullnameValid">Looks Good!</div>
+                  </div>
+
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="username" placeholder="Username" formControlName="username">
+                    <label for="username">Username</label>
+                    <div class="text-danger form-text"   *ngIf="usernameTouched &&  usernameRequired">Required Field!</div>
+                    <div class="text-danger form-text"   *ngIf="usernameTouched && !usernameRequired &&!usernameValid">At least 8 digits!</div>
+                    <div class="text-success form-text" *ngIf="!usernameRequired && usernameValid">Looks Good!</div>
+                  </div>
+
+                  <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email">
+                    <label for="floatingInput">Email address</label>
+                    <div class="text-danger form-text" *ngIf="emailTouched && emailRequired">Required Field!</div>
+                    <div class="text-danger form-text" *ngIf="emailTouched && !emailRequired &&!emailValid">Wrong Email!</div>
+                    <div class="text-success form-text" *ngIf="!emailRequired && emailValid">Looks Good!</div>
+                  </div>
+
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="address" placeholder="address" formControlName="address">
+                    <label for="address">Address</label>
+                    <div class="text-danger form-text"   *ngIf="addressTouched &&  addressRequired">Required Field!</div>
+                    <div class="text-danger form-text"   *ngIf="addressTouched && !addressRequired &&!addressValid">At least 8 digits!</div>
+                    <div class="text-success form-text" *ngIf="!addressRequired && addressValid">Looks Good!</div>
+                  </div>
+
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="phone" placeholder="phone" formControlName="phone">
+                    <label for="phone">Phone</label>
+                    <div class="text-danger form-text"   *ngIf="phoneTouched &&  phoneRequired">Required Field!</div>
+                    <div class="text-danger form-text"   *ngIf="phoneTouched && !phoneRequired &&!phoneValid">Phone Must be 11 digits!</div>
+                    <div class="text-success form-text" *ngIf="!phoneRequired && phoneValid">Looks Good!</div>
+                  </div>
+
+                  <div class="form-floating ">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
+                    <label for="floatingPassword">Password</label>
+                    <div class="text-danger form-text" *ngIf="passTouched && passRequired">Required Field!</div>
+                    <div class="text-danger form-text" *ngIf="passTouched && !passRequired && !passValid">At least 8 Digits!</div>
+                    <div class="text-success form-text" *ngIf="!passRequired && passValid">Looks Good!</div>
+                  </div>
+
+                  <div class="form-floating">
+                    <input type="password" class="form-control" id="Confirm Password" placeholder="Confirm Password" formControlName="confirm">
+                    <label for="Confirm Password">Confirm Password</label>
+                    <div class="text-danger form-text" *ngIf="confirmTouched && confirmRequired">Required Field!</div>
+                    <div class="text-danger form-text" *ngIf="confirmTouched && !confirmRequired && !passValid">At least 8 Digits!</div>
+                    <div class="text-danger form-text" *ngIf="IsMatchedPass | async">Not Matched Pass!</div>
+                  </div>
+                <div class="form-floating d-flex justify-content-between">
+                        <div class="form-check form-switch form-check-inline ">
+                          <label for="Admin"> Admin </label>
+                          <input class="form-check-input" type="radio"  id="Admin" value="Admin" checked formControlName="role" >
+                        </div>
+                        <div class="form-check form-switch form-check-inline ">
+                          <label for="Manger"> Manager </label>
+                          <input class="form-check-input" type="radio" id="Manger" value="Manger" formControlName="role">
+                        </div>
+                        <div class="form-check form-switch form-check-inline ">
+                          <label class="" for="Client"> Client </label>
+                          <input class="form-check-input" type="radio" id="Client" value="Client" formControlName="role">
+                        </div>
+                </div>
+                  <button class="btn btn-dark text-white w-100 py-3 mt-4" type="submit"><i
+                    class="bi bi-check-circle-fill" > Submit</i></button>
+                </form>
+              </div>
+        </div>
+    </div>
+</div>

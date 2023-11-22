@@ -1,0 +1,144 @@
+<div class="container-fluid row mt-4 mb-4 " style="min-height: 95vh;">
+
+  <!-- Side Pannel -->
+  <div class="col-sm-12 col-lg-3 shadow p-3 pt-5">
+
+    <div class="list-group">
+
+      <form  [formGroup]="fg">
+
+
+        <!-- Search -->
+        <label for="search" class="form-label">Search</label>
+        <input type="text" id="inputPassearchsword5" class="form-control" formControlName="search">
+
+        <!-- Sort -->
+        <label for="sort" class="form-label">Sort</label>
+        <select class="form-select form-select-sm" aria-label="Small select example" id="sort" formControlName="sort">
+          <option selected value="">Name</option>
+          <option value="priceAsc">Price Aseconding</option>
+          <option value="priceDesc">Price Desconding</option>
+        </select>
+
+        <!-- Brand -->
+        <label for="brand" class="form-label">Brand</label>
+        <select class="form-select form-select-sm" aria-label="Small select example" id="brand" formControlName="brand">
+          <option selected value="">All</option>
+          <option *ngFor="let item of brands" value="{{item.id}}">{{item.name}}</option>
+        </select>
+
+        <!-- Category -->
+        <label for="category" class="form-label">Category</label>
+        <select class="form-select form-select-sm" aria-label="Small select example" id="category" formControlName="category">
+          <option selected value="">All</option>
+          <option *ngFor="let item of categories" value="{{item.id}}">{{item.name}}</option>
+        </select>
+
+        <!-- Condition -->
+        <label for="condition" class="form-label">Condition</label>
+        <select class="form-select form-select-sm" aria-label="Small select example" id="condition" formControlName="condition">
+          <option selected value="">All</option>
+          <option value="new">New</option>
+          <option value="used">Used</option>
+        </select>
+
+        <!-- Rates -->
+        <label for="rates" class="form-label">Rates</label>
+        <select class="form-select form-select-sm" aria-label="Small select example" id="rates" formControlName="rating">
+          <option selected value="">All</option>
+          <option value="1">1UP</option>
+          <option value="2">2UP</option>
+          <option value="3">3UP</option>
+          <option value="4">4UP</option>
+          <option value="5">5UP</option>
+        </select>
+
+        <!-- Price Range -->
+        <label for="">Price Range</label>
+        <div class="wrapper">
+
+          <!-- Inputs Shower -->
+          <div class="mt-3 d-flex justify-content-between">
+
+            <div class="">
+              <input type="number" [value]="MinValue" (change)="assignMinValue($event)" class="form-control" formControlName="min"/>
+            </div>
+
+            <div class="seperator"><i class="bi bi-arrow-left-right"></i></div>
+
+            <div class="">
+              <input type="number" [value]="MaxValue" class="form-control" (change)="assignMaxValue($event)" formControlName="max" />
+            </div>
+
+          </div>
+
+          <div class="mt-3">
+            <!-- Bar Progress -->
+            <div class="slider">
+              <div class="progress" [style.left]="((MinValue / max) * 100)  + '%'"
+                [style.right]="(100 - ((MaxValue / max) * 100) ) + '%'"></div>
+            </div>
+
+            <!-- Range Input -->
+            <div class="range-input">
+              <input type="range" [min]="min" [max]="max" [value]="MinValue" (mouseup)="assignMinValue($event)" />
+              <input type="range" [min]="min" [max]="max" [value]="MaxValue" (mouseup)="assignMaxValue($event)" />
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Rating -->
+
+
+
+        <div class="mt-4 text-center">
+          <button class="btn btn-dark  w-75 m-auto" (click)="applyFilter($event)">Apply</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Products Container -->
+  <div class="container-fluid col-sm-12 col-lg-9 d-flex flex-wrap p-3  justify-content-end align-items-start">
+
+    <!-- Cards -->
+    <div id="card" class="card m-2" style="width: 15rem; position: relative; cursor: pointer;"
+      *ngFor="let item of products">
+
+      <div id="img" class="card-img-top text-center">
+        <img src="{{item.images[0] ? item.images[0] : 'assets/Images/NotFound.png'}}" class="img-fluid" alt="..."
+          [routerLink]="['details', item.id]">
+      </div>
+
+      <button (click)="AddToFavorite(item.id)" class="smalled s1 btn btn-dark m-1"
+        style="position: absolute; top:1px; right: 1px; font-size: 10px;"><i class=" bi bi-heart-fill"
+          id="heart"></i></button>
+
+      <button (click)="AddToWithList(item.id)" class="smalled s2 btn btn-dark m-1"
+        style="position: absolute; top:40px; right:1px; font-size: 10px;"><i class=" bi bi-list-ol"
+          id="star"></i></button>
+
+      <div class="card-body" [routerLink]="['details',item.id]" style="cursor: pointer; max-height: 170px; min-height: 170px; overflow: auto;">
+        <h5 class="card-title" >{{item.name}}</h5>
+        <p class="card-text" >{{item.description}}</p>
+        <p class="card-text">{{item.price}} LE</p>
+      </div>
+
+      <button (click)="AddToCart(item.id)" [value]="item.id" class="btn btn-dark m-3"><i class="bi bi-cart-fill"></i>
+        Add To Cart</button>
+
+    </div>
+
+  </div>
+
+  <!-- Pageination Buttons -->
+  <div class="w-50 m-auto text-center">
+    <button class="ination btn btn-dark" (click)="prev()">Prev</button>
+    <button class="ination btn btn-light"> [ {{filters.pageIndex}} ] </button>
+    <button class="ination btn btn-dark" (click)="next()">Next</button>
+  </div>
+
+
+</div>

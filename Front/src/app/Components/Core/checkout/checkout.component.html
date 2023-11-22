@@ -1,0 +1,233 @@
+<div class="container my-5">
+  <div class="row g-5">
+
+    <!-- Order Products -->
+    <div class="col-md-5 col-lg-4 order-md-last">
+
+      <h4 class="d-flex justify-content-between align-items-center mb-3 p-1">
+        <span class="text-dark">Your Order</span>
+        <span class="badge bg-success rounded-pill">{{cartLength}} Pieces</span>
+      </h4>
+
+      <ul class="list-group mb-3">
+        <li class="list-group-item " *ngFor="let item of products" id="Holder">
+          <div class="row">
+            <div class="col-3" id="img">
+              <img src="{{item.images[0] ? item.images[0] : 'assets/Images/NotFound.png'}}" alt="" class="img-fluid">
+            </div>
+            <div class="d-flex justify-content-between lh-sm col-9">
+              <div>
+                <h6 class="my-0">{{item.productName}}</h6>
+                <small class="text-muted">{{item.productQuantity}} Pieces</small>
+              </div>
+              <span class="text-muted">{{item.productPrice * item.productQuantity}}LE</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <form class="card p-2">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Promo code">
+          <button type="submit" class="btn btn-success">Redeem</button>
+        </div>
+      </form>
+
+      <div>
+
+        <ul class="list-group mb-3 mt-3" id="info">
+
+          <li class="list-group-item ">
+            <div class="d-flex justify-content-between lh-sm col-9">
+              <div>
+                <h6 class="my-0">Cart Price</h6>
+                <small class="text-muted">{{cartPrice}} LE</small>
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item ">
+            <div class="d-flex justify-content-between lh-sm col-9">
+              <div>
+                <h6 class="my-0">Promotion</h6>
+                <small class="text-muted">{{promotion}} LE</small>
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item ">
+            <div class="d-flex justify-content-between lh-sm col-9">
+              <div>
+                <h6 class="my-0">Tax</h6>
+                <small class="text-muted">{{tax}} LE</small>
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item ">
+            <div class="d-flex justify-content-between lh-sm col-9">
+              <div>
+                <h6 class="my-0">Discounts</h6>
+                <small class="text-muted">{{discounts}} LE</small>
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item ">
+            <div class="d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0 fs-4">Total Price</h6>
+              </div>
+              <div>
+                <!-- <span class="badge bg-dark rounded-pill fs-5">234$</span> -->
+                <h6 class="my-0 fs-4 text-success">{{totalPrice}} LE</h6>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div>
+        <ul class="list-group mb-3 mt-3" id="info">
+          <li class="list-group-item " (click)="SubmitCheckout()">
+            <button class="btn btn-success w-100 p-2" id="cod"><i class="bi bi-wallet2"></i> Cash On Delivery</button>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <ul class="list-group mb-3 mt-3" id="info">
+          <li class="list-group-item ">
+            <ngx-paypal [config]="paypalConfig"></ngx-paypal>
+            <!-- <button class="btn btn-success w-100 p-2" id="paypal"><i class="bi bi-paypal"></i> PayPal</button> -->
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+
+    <!-- Billing -->
+    <div class="col-md-7 col-lg-8 fs-3" id="ShippingInfo">
+
+      <form [formGroup]="fg">
+        <div class="display-6">Shipping Info.</div>
+
+        <ul class="list-group mb-3 mt-3" id="info">
+
+          <!-- Full Name -->
+          <li class="list-group-item ">
+            <div class="d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0">Full Name</h6>
+                <small class="text-muted">{{fullname}}</small>
+              </div>
+            </div>
+          </li>
+
+          <!-- Phone Number -->
+          <li class="list-group-item ">
+            <div class="d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0">Phone Number</h6>
+                <small class="text-muted" >{{phonenumber}}</small>
+              </div>
+              <div>
+                <a class="btn btn-dark m-1" *ngIf="!(AddPhone |async) " (click)="phoneChoose($event)">Choose Phone</a>
+                <a class="btn btn-dark m-1" *ngIf="!(ChoosePhone |async) " (click)="phoneAdd($event)"> Add New</a>
+              </div>
+            </div>
+
+
+            <!-- Choose Phone Number -->
+            <div *ngIf="(ChoosePhone |async) && (!(AddPhone | async))">
+              <label for="chosePhone" class="form-label fs-6">Choose number</label>
+              <select name="" id="chosePhone" class="form-select" (change)="AssignPhone($event)"
+                formControlName="ChoosePhone">
+                <option *ngFor="let item of phones">{{item.phoneNumber}}</option>
+              </select>
+            </div>
+
+
+            <!-- Add New Number -->
+            <div *ngIf="(AddPhone |async) && (!(ChoosePhone | async))">
+              <label for="phone" class="form-label fs-6">Add Phone</label>
+              <input type="text" id="phone" class="form-control" formControlName="AddPhone">
+              <div class="text-danger form-text" *ngIf="phoneTouched &&  phoneRequired">Required Field!</div>
+              <div class="text-danger form-text" *ngIf="phoneTouched && !phoneRequired &&!phoneValid">Phone Must be 11
+                digits!</div>
+              <div class="text-success form-text" *ngIf="!phoneRequired && phoneValid">Looks Good!</div>
+            </div>
+
+          </li>
+
+          <!-- Addresses -->
+          <li class="list-group-item ">
+            <div class="d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0">Address</h6>
+                <small class="text-muted" >{{address}}</small>
+              </div>
+              <div>
+                <div>
+                  <a class="btn btn-dark m-1" *ngIf="!(addAddress | async)" (click)="AddressChoose($event)">Choose
+                    Address</a>
+                  <a class="btn btn-dark m-1" *ngIf="!(ChooseAddress | async)" (click)="addressAdd($event)"> Add New</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Choose Address -->
+            <div *ngIf="ChooseAddress | async">
+              <label for="chooseAddress" class="form-label fs-6">Choose Address</label>
+              <select name="" id="chooseAddress" class="form-select" formControlName="ChooseAddress"
+                (change)="AssignAddress($event)">
+                <option *ngFor="let item of addresses" value="{{item.id}}">{{item.street}}, {{item.city}},
+                  {{item.country}}</option>
+              </select>
+
+            </div>
+
+            <!-- Add New Address -->
+            <div *ngIf="addAddress | async">
+
+              <div class="form-floating m-2">
+                <input type="text" class="form-control" id="street" placeholder="Street" formControlName="street">
+                <label for="street" class="form-label">Street</label>
+                <div class="text-danger form-text" *ngIf="streetTouched &&  streetRequired">Required Field!</div>
+                <div class="text-danger form-text" *ngIf="streetTouched && !streetRequired &&!streetValid">At least 5
+                  digits!</div>
+                <div class="text-success form-text" *ngIf="!streetRequired && streetValid">Looks Good!</div>
+              </div>
+
+              <div class="form-floating m-2">
+                <input type="text" class="form-control" id="city" placeholder="City" formControlName="city">
+                <label for="city">City</label>
+                <div class="text-danger form-text" *ngIf="cityTouched &&  cityRequired">Required Field!</div>
+                <div class="text-danger form-text" *ngIf="cityTouched && !cityRequired &&!cityValid">At least 5 digits!
+                </div>
+                <div class="text-success form-text" *ngIf="!cityRequired && cityValid">Looks Good!</div>
+              </div>
+
+              <div class="form-floating m-2">
+                <input type="text" class="form-control" id="country" placeholder="Country" formControlName="country">
+                <label for="country">Country</label>
+                <div class="text-danger form-text" *ngIf="countryTouched &&  countryRequired">Required Field!</div>
+                <div class="text-danger form-text" *ngIf="countryTouched && !countryRequired &&!countryValid">Phone Must
+                  be 11 digits!</div>
+                <div class="text-success form-text" *ngIf="!countryRequired && countryValid">Looks Good!</div>
+              </div>
+
+            </div>
+
+          </li>
+
+        </ul>
+      </form>
+
+    </div>
+  </div>
+
+</div>

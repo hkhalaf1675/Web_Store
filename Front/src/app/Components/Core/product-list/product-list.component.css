@@ -1,0 +1,90 @@
+a{
+  border-radius: 0px !important;
+}
+
+
+button{
+  border-radius: 0px;
+}
+
+input, select{
+  border-radius: 0px !important;
+}
+
+.ination{
+  width: 4rem;
+  height: 2rem;
+}
+
+#img{
+  max-height: 200.14px;
+  min-height: 200.14px;
+}
+img{
+  max-height: inherit;
+  transition-duration: 1s;
+
+}
+
+#card{
+  border: 0px;
+  overflow: hidden;
+}
+
+#card:hover #img img {
+  transform: scale(1.04);
+  opacity: 0.8;
+}
+
+label{
+  margin-top: 10px;
+  font-size: 0.8rem;
+}
+
+/* --------------- Price Range Slider --------------------- */
+.wrapper .seperator {
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+}
+
+.wrapper .slider {
+  height: 5px;
+  position: relative;
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+.wrapper .progress {
+  position: absolute;
+  height: 100%;
+  background-color: rgb(54, 48, 48);
+  border-radius: 5px;
+}
+
+.wrapper .range-input {
+  position: relative;
+}
+
+.wrapper .range-input input {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  top: -5px;
+  pointer-events: none;
+  background: none;
+  appearance: none;
+  accent-color: rgb(54, 48, 48);
+}
+
+.wrapper .range-input input::-webkit-slider-thumb {
+  height: 15px;
+  width: 15px;
+  background-color: #4070f4;
+  border-radius: 50%;
+  pointer-events: auto;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+

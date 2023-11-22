@@ -1,0 +1,31 @@
+<div class="container-fluid">
+
+  <form [formGroup]="fg" >
+    <div class="mb-3">
+      <label for="reviewInput" class="form-label">Your Review:</label>
+      <textarea class="form-control" id="reviewInput" rows="4" placeholder="Enter your review" formControlName="reviewText"></textarea>
+    </div>
+
+    <!-- Rating Star -->
+    <ul class="list-unstyled rating d-flex justify-content-center m-2 p-2" data-bs-toggle="tooltip" tabindex="0">
+      <li *ngFor="let star of fillRate; let i = index"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          [title]="title[i]"
+          (mouseenter)="fillStars(i)"
+          (mouseleave)="resetStars()"
+          (click)="setRating(i)">
+        <i [class]="star"></i>
+      </li>
+    </ul>
+
+    <div>
+      {{fg.get('selectedRating')?.value}}
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-success" (click)="submit()" >Submit Review</button>
+  </form>
+
+
+</div>

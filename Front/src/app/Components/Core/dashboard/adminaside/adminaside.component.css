@@ -1,0 +1,14 @@
+a{
+    color: black !important;
+    font-size:20px ;
+}
+
+.nav-link.active {
+    background-color: #383c3f; /* Set the background color for active links */
+    color: #aba2fd !important; /* Set the text color for active links */
+}
+
+.nav-link:hover {
+    color: #aba2fd !important;
+    font-weight: bold;
+}

@@ -1,0 +1,41 @@
+<div class="m-2 mt-1 p-3" style="max-height: 60vh; overflow: auto;">
+  <ul class="list-group mt-4" id="commentContainer">
+
+    <li class="list-group-item d-flex flex-wrap bg-body-secondary" *ngFor="let item of (reviewapi.reviewList | async)">
+
+      <div id="commentprofile" class="col-12 fs-4 d-flex align-items-center justify-content-start" style="max-height: 80px;">
+
+        <img id="commentProfileImage" src="https://picsum.photos/200/200" alt="">
+        <div id="commentName" class="fs-5">{{item.userName}}</div>
+        <div id="ReviewDate" class="d-flex">
+          <div>
+            {{item.date}}
+          </div>
+
+          Rating
+          <div style="margin-left: 5px;">
+            <span class="bi bi-star-fill text-warning" *ngIf="item.rating > 0"></span>
+            <span class="bi bi-star-fill text-warning" *ngIf="item.rating > 1"></span>
+            <span class="bi bi-star-fill text-warning" *ngIf="item.rating > 2"></span>
+            <span class="bi bi-star-fill text-warning" *ngIf="item.rating > 3"></span>
+            <span class="bi bi-star-fill text-warning" *ngIf="item.rating > 4"></span>
+            <span class="bi bi-star" *ngIf="item.rating < 1"></span>
+            <span class="bi bi-star" *ngIf="item.rating < 2"></span>
+            <span class="bi bi-star" *ngIf="item.rating < 3"></span>
+            <span class="bi bi-star" *ngIf="item.rating < 4"></span>
+            <span class="bi bi-star" *ngIf="item.rating < 5"></span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="commentText" class="m-2" style="text-align: left; ">{{item.text}}</div>
+
+    </li>
+
+
+
+  </ul>
+
+</div>

@@ -1,0 +1,54 @@
+<div class="container row justify-content-center mt-5 p-5 m-auto" style="min-height: 80vh;">
+
+  <!-- Cart Product Container -->
+  <div id="cartProductsContainer" class="row d-flex justify-content-center align-content-start col-md-8 col-sm-12">
+
+    <!-- Cards Section -->
+    <div class="card mb-2 w-100 d-flex justify-content-center" *ngFor="let item of cart; let i = index" id="cartHolder">
+
+      <div class="row g-0 justify-content-between" id="card">
+        <div class="col-md-3 d-flex justify-content-center align-items-center" id="img" style="cursor: pointer;"
+          [routerLink]="['/products/details/',item.productId]">
+          <img class="img-fluid" src="{{item.images[0] ? item.images[0] : 'assets/Images/NotFound.png'}}">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <div class="card-title"><strong>Product Name:</strong>{{item.productName}}</div>
+            <h4 class="card-title"><strong>Price: {{item.productPrice}} LE</strong></h4>
+            <label for="quantity{{i}}"><strong>Quantity</strong></label>
+            <select name="quantity{{i}}" class="w-50 m-2" id="quantity" [(ngModel)]="quantities[i]"
+              (change)="UpdateAmount(item.productId, i)">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <div>Total Price <Strong>{{item.productPrice * quantities[i]}} LE</Strong></div>
+          </div>
+        </div>
+        <div class="col-1 d-flex justify-content-center align-items-center">
+          <button class="btn btn-dark" (click)="deletecart(item.productId)">X</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- checkout Section and price -->
+  <div class="col-md-4 col-sm-12 container-fluid">
+    <div class="row align-items-center" id="totalPriceSection">
+      <div id="totalPrice" class="fs-4 p-3 ">Total Price: <strong>{{totalPrice}} LE</strong></div>
+    </div>
+
+    <div id="checkButton" class="row">
+      <button class=" btn w-100 btn-dark p-3" (click)="checkout()">Checkout</button>
+    </div>
+
+
+  </div>
+
+</div>

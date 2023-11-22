@@ -1,0 +1,49 @@
+<div class="container d-flex col-md-5 col-12">
+  <div class="list-group list-group-flush ">
+
+    <div class="text-center p-3">
+      <img src="assets/Images/userprofilepic.png" id="profileimage" class="img-fluid rounded-circle" alt="">
+    </div>
+
+    <div>
+      <div class="fs-2">{{this.log.CurrentUserName | async}}</div>
+    </div>
+
+
+    <div [routerLink]="['/profile']" [routerLinkActive]="['profactive']"
+      class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
+      <i class="fas fa-chart-area fa-fw me-3 justify-content-center"></i><span>General Information</span>
+    </div>
+
+    <div [routerLink]="['/address']" [routerLinkActive]="['profactive']"
+      class="list-group-item list-group-item-action p-3 ripple text-center zoom  fs-5">
+      <i class="fas fa-chart-area fa-fw me-3"></i><span>Addresses</span>
+    </div>
+
+    <div [routerLink]="['/phones']" [routerLinkActive]="['profactive']"
+      class="list-group-item list-group-item-action p-3 ripple text-center zoom  fs-5">
+      <i class="fas fa-chart-area fa-fw me-3"></i><span>Phones</span>
+    </div>
+
+    <div [routerLink]="['/wishlist']" [routerLinkActive]="['profactive']"
+      class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
+      <i class="fas fa-money-bill fa-fw me-3"></i><span>WishList</span>
+    </div>
+
+    <div [routerLink]="['/favorite']" [routerLinkActive]="['profactive']"
+      class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
+      <i class="fas fa-money-bill fa-fw me-3"></i><span>Favorites</span>
+    </div>
+
+    <div [routerLink]="['/orders']" [routerLinkActive]="['profactive']"
+      class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
+      <i class="fas fa-money-bill fa-fw me-3"></i><span>Orders</span>
+    </div>
+
+    <div id="logoutbutton" class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5"
+      (click)="logout()">
+      <a class="nav-link text-dark Headers"><i class="bi bi-box-arrow-left"> Logout</i></a>
+    </div>
+
+  </div>
+</div>

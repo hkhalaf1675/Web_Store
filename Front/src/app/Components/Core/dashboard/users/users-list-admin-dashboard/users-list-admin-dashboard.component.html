@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <app-adminaside></app-adminaside>
+    </div>
+    <div class="col-12 col-md-9">
+            <div class="m-2">
+                <button class="btn btn-dark m-3" [routerLink]="'/admin/users/new'"><i class="bi bi-person-plus"></i> Add User</button>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users; let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{user.fullName}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.role}}</td>
+                        <td>
+                            <!-- <i class="bi text-primary fs-4 bi-info-circle" ></i> |  -->  <!-- Not Have Data To Show User Details-->
+                            <!-- <i class="bi text-warning fs-4 bi-pencil-square" ></i> | -->
+                            <i class="bi text-danger fs-4 bi-trash" (click)="delete(user.userName)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- ------ Pageination Buttons --------------- -->
+            <div class="w-50 m-auto text-center">
+                <button class="ination btn btn-dark" (click)="prev()">Prev</button>
+                <button class="ination btn btn-light"> [ {{pageIndex}} ] </button>
+                <button class="ination btn btn-dark" (click)="next()">Next</button>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</div>

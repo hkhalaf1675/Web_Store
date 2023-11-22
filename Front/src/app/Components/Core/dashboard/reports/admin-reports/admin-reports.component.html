@@ -1,0 +1,68 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <app-adminaside></app-adminaside>
+    </div>
+    <div class="col-12 col-md-9">
+
+      <div class="container">
+
+
+        <button class="btn btn-dark text-white py-2 mx-auto d-block mt-2 mb-2" (click)="showDialog = true">
+          Please Enter Start & End Date For the Report! </button>
+
+        <!-------------------  form ------------------- -->
+        <div class="overlay" id="overlay" *ngIf="showDialog">
+          <div class="form-container">
+            <form class="shadow p-4 " [formGroup]="reportForm">
+              <div class="form-floating">
+                <input type="date" class="form-control" id="startDate" formControlName="startDate">
+                <label for="startDate">Start Date</label>
+              </div>
+              <br>
+              <div class="form-floating">
+                <input type="date" class="form-control" id="endDate" formControlName="endDate">
+                <label for="endDate">End Date</label>
+              </div>
+
+              <button class="btn btn-dark text-white w-100 py-3 mt-4" [disabled]="!reportForm.valid" type="submit"
+                (click)="onSubmit()"><i class="bi bi-check-circle-fill"> Submit</i></button>
+            </form>
+          </div>
+        </div>
+
+        <!-------------------  Orders List ------------------- -->
+        <br>
+        <div class="m-2" *ngIf="reports.length > 0">
+          <div class="display-6 ">Orders</div>
+        </div>
+        <hr>
+        <div style="min-height: 70vh;" *ngIf="reports.length > 0">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Order Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Products Count</th>
+                <th scope="col">Total Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let report of reports; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{report.date}}</td>
+                <td>{{getOrderStatusName(report.status)}}</td>
+                <td>{{report.productsCount}}</td>
+                <td>{{report.totalPrice}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

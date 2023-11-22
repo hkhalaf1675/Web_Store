@@ -1,0 +1,39 @@
+<div class="container mb-4">
+  <h1 class= "text-center mb-3">Hear What Our Customers Are Saying</h1>
+ <ul class="cards">
+
+  <li class="card" *ngFor="let item of reviews | slice:0:4; let i = index">
+      <div class="card-content">
+        <br>
+        <img [src]="ProductsImg[i]" alt="Service 1 Image">
+        <br><br>
+          <br>
+      </div>
+      <div class="card-footer w-100 p-0 m-0">
+        <p class="card-text">{{item.userName}}<br>{{item.text}}</p>
+          <div style="margin-left: 5px;">
+            Rating
+            <span class="bi bi-star-fill text-warning" *ngIf="item.rating > 0"></span>
+            <span class="bi bi-star-fill text-warning" *ngIf="item.rating > 1"></span>
+            <span class="bi bi-star-fill text-warning" *ngIf="item.rating > 2"></span>
+            <span class="bi bi-star-fill text-warning" *ngIf="item.rating > 3"></span>
+            <span class="bi bi-star-fill text-warning" *ngIf="item.rating > 4"></span>
+            <span class="bi bi-star" *ngIf="item.rating < 1"></span>
+            <span class="bi bi-star" *ngIf="item.rating < 2"></span>
+            <span class="bi bi-star" *ngIf="item.rating < 3"></span>
+            <span class="bi bi-star" *ngIf="item.rating < 4"></span>
+            <span class="bi bi-star" *ngIf="item.rating < 5"></span>
+          </div>
+
+      </div>
+  </li>
+
+</ul>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <app-adminaside></app-adminaside>
+    </div>
+    <div class="col-12 col-md-9">
+          <div class="container text-center ">
+            <div class="row">
+
+              <div class="col-6 col-sm-4 m-5">
+                <div class="card text-center custom-card">
+                  <div class="card-body">
+                    <i class="bi bi-coin icon-large"></i>
+                    <h5 class="card-title fw-bold">{{totalSell}}</h5>
+                    <p class="card-text">Total Sell</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6 col-sm-4 m-5">
+                <div class="card text-center custom-card">
+                  <div class="card-body">
+                    <i class="bi bi-cart3 icon-large "></i>
+                    <h5 class="card-title fw-bold">{{totalOrders}}</h5>
+                    <p class="card-text">Total Orders</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Force next columns to break to new line at md breakpoint and up -->
+              <div class="w-100 d-none d-md-block"></div>
+
+              <div class="col-6 col-sm-4 m-5">
+                <div class="card text-center custom-card">
+                  <div class="card-body">
+                    <i class="bi bi-laptop icon-large"></i>
+                    <h5 class="card-title fw-bold">{{totalProducts}}</h5>
+                    <p class="card-text">Total Products</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6 col-sm-4 m-5">
+                <div class="card text-center custom-card">
+                  <div class="card-body">
+                    <i class="bi bi-people-fill icon-large"></i>
+                    <h5 class="card-title fw-bold">{{totalUsers}}</h5>
+                    <p class="card-text">Total Users</p>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="offers.length>0" class="alert alert-warning" role="alert">
+                <li *ngFor="let item of offers">
+                  Offers: {{item}}
+                </li>
+            </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

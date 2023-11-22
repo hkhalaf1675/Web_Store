@@ -1,0 +1,59 @@
+export interface Iclaims {
+    Actor: string;
+    PostalCode: string;
+    PrimaryGroupSid: string;
+    PrimarySid: string;
+    Role: string;
+    Rsa: string;
+    SerialNumber: string;
+    Sid: string;
+    Spn: string;
+    StateOrProvince: string;
+    StreetAddress: string;
+    Surname: string;
+    System: string;
+    Thumbprint: string;
+    Upn: string;
+    Uri: string;
+    UserData: string;
+    Version: string;
+    Webpage: string;
+    WindowsAccountName: string;
+    WindowsDeviceClaim: string;
+    WindowsDeviceGroup: string;
+    WindowsFqbnVersion: string;
+    WindowsSubAuthority: string;
+    OtherPhone: string;
+    NameIdentifier: string;
+    Name: string;
+    MobilePhone: string;
+    Anonymous: string;
+    Authentication: string;
+    AuthenticationInstant: string;
+    AuthenticationMethod: string;
+    AuthorizationDecision: string;
+    CookiePath: string;
+    Country: string;
+    DateOfBirth: string;
+    DenyOnlyPrimaryGroupSid: string;
+    DenyOnlyPrimarySid: string;
+    DenyOnlySid: string;
+    WindowsUserClaim: string;
+    DenyOnlyWindowsDeviceGroup: string;
+    Dsa: string;
+    Email: string;
+    Expiration: string;
+    Expired: string;
+    Gender: string;
+    GivenName: string;
+    GroupSid: string;
+    Hash: string;
+    HomePhone: string;
+    IsPersistent: string;
+    Locality: string;
+    Dns: string;
+    X500DistinguishedName: string;
+  }
+
+
+

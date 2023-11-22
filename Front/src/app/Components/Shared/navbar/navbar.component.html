@@ -1,0 +1,99 @@
+<div class="Header z-3 shadow">
+
+  <div class="upper-nav banner" [routerLink]="['products']">
+    <p> Shop now for unbeatable deals! <a routerLink="/products" class="PicksLink link-light text-decoration-none">Top
+        Picks→</a> </p>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-white mt-1 shadow mb-2">
+    <div class="container">
+      <a class="navbar-brand h2 text-dark logo">WebStore</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="main" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item ">
+            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['']">Home</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link p-2 p-lg-3 text-dark Headers" href="#brands">Brands</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['products']">Products</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['blog']">Blog</a>
+          </li>
+          <li class="nav-item " *ngIf="(log.IsAdmin | async)">
+            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['admin/home']" >Dashboard</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['contactus']">Contact Us</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ms-auto">
+
+          <!-- Cart -->
+          <li class="nav-item mt-2 p-2" >
+            <a class="nav-link text-dark Headers position-relative d-inline" (click)="CheckLog('cart')">
+              <i class="bi bi-cart-fill"></i>
+              <span class="position-absolute top-20 start-0 translate-middle badge rounded-pill bg-danger">
+              {{cartservice.CartLength | async}}
+              </span>
+            </a>
+          </li>
+
+          <li class="nav-item mt-2 p-2">
+            <a class="nav-link text-dark Headers position-relative d-inline" (click)="CheckLog('favorite')">
+              <i class="bi bi-heart-fill"></i>
+              <span class="position-absolute top-20 start-0 translate-middle badge rounded-pill bg-danger">
+                {{ favoriteservice.favoriteLength | async }}
+              </span>
+            </a>
+          </li>
+
+          <!-- Login -->
+          <li class="nav-item m-1" [routerLink]="['login']" *ngIf="!(log.IsLoggedIn | async)">
+            <a class="nav-link text-dark Headers"><i class="bi bi-person-fill">Login</i></a>
+          </li>
+
+          <!-- Logged Name -->
+          <li class="nav-item m-1 d-flex" [routerLink]="['profile']" *ngIf=" (log.IsLoggedIn | async)" >
+            <a class="nav-link text-dark Headers"><i class="fa-solid fa-xl fa-right-from-bracket"><img
+                  src="assets/Images/profilepic.png" class="img" style="width: 4VH; border-radius: 50%;" alt="">
+                {{this.log.CurrentUserName | async}}</i></a>
+          </li>
+
+          <!-- Logged Name -->
+          <li class="nav-item m-1 d-flex" *ngIf=" (log.IsLoggedIn | async)">
+            <a class="nav-link text-dark Headers"><i class="bi bi-box-arrow-left" (click)="logout()"> Logout</i></a>
+          </li>
+
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="lower-nav mt-3">
+    <div class="lower-nav-child col-lg-4 col-md-3 col-sm-3 justify-content-center">
+      <i class=" fa fa-money fa-xl"></i>
+      <h6 class="p-1">Cash On Delivery</h6>
+    </div>
+    <div class="lower-nav-child col-lg-4 col-md-3 col-sm-3 justify-content-center">
+      <i class="fas fa-handshake fa-xl"></i>
+      <h6 class="p-1">Easy Installment</h6>
+    </div>
+    <div class="lower-nav-child col-lg-4 col-md-3 col-sm-3 justify-content-center">
+      <i class="fa-solid fa-arrow-right-arrow-left fa-xl"></i>
+      <h6 class="p-1">Free Return</h6>
+    </div>
+  </div>
+</div>

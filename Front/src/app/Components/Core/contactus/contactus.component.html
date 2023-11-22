@@ -1,0 +1,68 @@
+<div class="landing_page">
+  <div class="responsive-container-block big-container ">
+    <img class="bg-img" id="iq5bf"
+      src="https://images.wallpaperscraft.com/image/single/brick_wall_texture_192138_3840x2400.jpg" alt="img">
+    <div class="responsive-container-block container justify-content-between">
+      <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12 left-one">
+        <div class="content-box">
+          <p class="text-blk section-head">
+            WebStore
+          </p>
+          <p class="text-blk section-subhead">
+            "Connecting hearts and minds, we welcome your thoughts, questions, and dreams. Together, we can turn
+            possibilities into realities. Reach out and let your voice be heard!" </p>
+
+        </div>
+      </div>
+      <div class="responsive-cell-block wk-ipadp-6 wk-tab-6 wk-mobile-12 wk-desk-6 right-one " id="i1zj">
+        <form class="form-box " [formGroup]="fg" (submit)="OnSubmit($event)">
+          <div class="container-block form-wrapper ">
+            <p class="text-blk contactus-head text-center">
+              Contact Us
+            </p>
+            <p class="text-blk contactus-subhead text-center">
+              We will get back to you in 24 hours
+            </p>
+
+            <div class="responsive-container-block">
+
+              <div class="responsive-cell-block w-100" id="i10mt-7">
+                <input class="input " id="ijowk-7" name="FullName" placeholder="Full Name" formControlName="fullname">
+                <div class="text-danger form-text" *ngIf="fullnameTouched &&  fullnameRequired">Required Field!</div>
+                <div class="text-danger form-text" *ngIf="fullnameTouched && !fullnameRequired &&!fullnameValid">At least 8 digits!</div>
+                <div class="text-success form-text" *ngIf="!fullnameRequired && fullnameValid">Looks Good!</div>
+              </div>
+
+              <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-6 wk-ipadp-6 emial w-100" id="ityct">
+                <input class="input" type="email" id="ipmgh-7" name="Email" placeholder="Email" formControlName="email">
+                <div class="text-danger form-text" *ngIf="emailTouched && emailRequired">Required Field!</div>
+                <div class="text-danger form-text" *ngIf="emailTouched && !emailRequired &&!emailValid">Wrong Email!
+                </div>
+                <div class="text-success form-text" *ngIf="!emailRequired && emailValid">Looks Good!</div>
+              </div>
+
+              <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12 w-100">
+                <input class="input" id="imgis-6" name="PhoneNumber" placeholder="Phone Number" formControlName="phone">
+                <div class="text-danger form-text" *ngIf="phoneTouched &&  phoneRequired">Required Field!</div>
+                <div class="text-danger form-text" *ngIf="phoneTouched && !phoneRequired &&!phoneValid">Phone Must be 11 digits!</div>
+                <div class="text-success form-text" *ngIf="!phoneRequired && phoneValid">Looks Good!</div>
+              </div>
+
+              <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12 w-100" id="i634i-7">
+                <textarea name="message" aria-placeholder="Type message here" class="textinput" id="i5vyy-7"
+                  placeholder="Type message here" formControlName="message"></textarea>
+                  <div class="text-danger form-text"   *ngIf="messageTouched &&  messageRequired">Required Field!</div>
+                  <div class="text-danger form-text"   *ngIf="messageTouched && !messageRequired &&!messageValid">At least 20 digits!</div>
+                  <div class="text-success form-text" *ngIf="!messageRequired && messageValid">Looks Good!</div>
+              </div>
+
+            </div>
+            <button type="submit" class="submit-btn">
+              Send
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

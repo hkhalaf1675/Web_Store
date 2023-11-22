@@ -1,0 +1,24 @@
+<p class="h1 text-center text-black mt-2">Top Picks</p>
+<p class="h3 text-center text-black">Get Your Favorite Products Now!</p>
+
+<div class="container-fluid">
+
+  <div class="body row">
+
+    <div class="card col-4"  *ngFor="let item of products">
+      <div class="cover">
+        <img src="{{item.images[0] ? item.images[0] : 'assets/Images/NotFound.png'}}" alt="Elegant Leather Sofa Set"  />
+      </div>
+      <div class="details">
+        <div>
+          <img src="{{item.images[1] ? item.images[1] : 'assets/Images/NotFound.png'}}" alt="BetaFPV Cetos"  />
+          <h4>{{item.name}}
+          </h4>
+          <h2>{{item.price}} <small class="h5">EGP</small></h2>
+          <a routerLink="/products">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

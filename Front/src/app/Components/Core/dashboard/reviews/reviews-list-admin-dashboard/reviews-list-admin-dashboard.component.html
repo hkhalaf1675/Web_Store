@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <app-adminaside></app-adminaside>
+    </div>
+    <div class="col-12 col-md-9">
+      <div class="m-2">
+        <div class="display-6 ">Reviews</div>
+      </div>
+      <hr>
+      <div style="min-height: 70vh;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">User Name</th>
+              <th scope="col">Comment</th>
+              <th scope="col">Rating</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let rev of reviews; let i = index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{rev.productName}}</td>
+              <td>{{rev.userName}}</td>
+              <td>{{rev.text}}</td>
+              <td>{{rev.rating}}</td>
+              <td>
+                <i class="bi text-danger fs-4 bi-trash" (click)="delete(rev.id)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ------ Pageination Buttons --------------- -->
+      <div class="w-50 m-auto text-center">
+        <button class="ination btn btn-dark" (click)="prev()">Prev</button>
+        <button class="ination btn btn-light"> [ {{pageIndex}} ] </button>
+        <button class="ination btn btn-dark" (click)="next()">Next</button>
+      </div>
+      <br><br>
+    </div>
+  </div>
+</div>

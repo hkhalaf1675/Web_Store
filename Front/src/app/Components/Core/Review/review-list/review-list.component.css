@@ -1,0 +1,38 @@
+#commentProfileImage{
+  width: 4rem;
+  height: 4rem;
+  border-radius: 2rem;
+  margin: 1rem;
+}
+
+#imageSectionDetails img{
+  transition: 200ms;
+}
+#imageSectionDetails img:hover{
+  opacity: 0.9;
+  transform: scale(0.95);
+  transition: 200ms;
+}
+
+#commentprofile{
+  position: relative;
+}
+
+
+
+#ReviewDate{
+  position: absolute;
+  font-size: .8rem;
+  color: rgb(104, 101, 101);
+  top: 3.6rem;
+  left: 6rem;
+}
+
+#rateStars li{
+  display: inline;
+  color: black;
+}
+
+#rateStars{
+  margin-left: 1rem;
+}

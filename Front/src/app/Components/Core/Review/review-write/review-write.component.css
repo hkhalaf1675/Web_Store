@@ -1,0 +1,13 @@
+i{
+  cursor: pointer;
+  margin: 2px;
+  font-size: 2rem;
+}
+
+button{
+  border-radius: 0px;
+}
+
+.starActive{
+  color: yellowgreen;
+}

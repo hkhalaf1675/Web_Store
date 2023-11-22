@@ -1,0 +1,12 @@
+<div class="container mt-3" id="brands">
+  <h1 class="h1 text-center text-black mb-5">Expolore Popular Brands</h1>
+  <div class="row justify-content-center mb-5 div-img">
+    <div class="col-lg-2 col-sm-4" *ngFor="let brand of brands; let i = index">
+      <a [routerLink]="'/products'" class="text-decoration-none">
+        <img class="w-100 rounded-2" [src]="brand.imageUrl" alt="{{brand.name}}">
+        <br><br>
+        <h6 class="h6 text-black text-center">{{brand.name}}</h6>
+      </a>
+    </div>    
+  </div>
+</div>

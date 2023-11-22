@@ -1,0 +1,32 @@
+img{
+  max-width: 30vw;
+}
+
+div{
+  text-align: center;
+  cursor: pointer;
+}
+
+.list-group-item:hover{
+  background-color: #0e1130;
+  color: white;
+  transition: 400ms;
+}
+
+.list-group-item{
+  transition: 400ms;
+}
+
+
+#logoutbutton:hover{
+  background-color: red;
+}
+
+#profileimage{
+  width: 20vw;
+}
+
+.profactive{
+  background-color: #24295e;
+  color: white;
+}

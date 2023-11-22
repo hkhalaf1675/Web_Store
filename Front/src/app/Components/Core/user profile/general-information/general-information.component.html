@@ -1,0 +1,89 @@
+<div class="container-fluid row d-flex mt-2 mb-5">
+
+
+    <div class="col-12 col-md-5 d-flex justify-content-md-start justify-content-center">
+      <app-profile></app-profile>
+    </div>
+
+    <div class="col-12 col-md-7 d-flex align-items-center justify-content-center">
+
+      <form class="shadow p-4 w-100" [formGroup]="fg">
+        <h1 class="h3 mb-3 fw-normal text-center">User Info.</h1>
+
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingName" placeholder="Full Name" formControlName="fullname">
+          <label for="floatingName">Full Name</label>
+          <div class="text-danger form-text"   *ngIf="fullnameTouched &&  fullnameRequired">Required Field!</div>
+          <div class="text-danger form-text"   *ngIf="fullnameTouched && !fullnameRequired &&!fullnameValid">At least 8 digits!</div>
+          <div class="text-success form-text" *ngIf="!fullnameRequired && fullnameValid">Looks Good!</div>
+        </div>
+
+        <div class="form-floating">
+          <input type="text" class="form-control" id="username" placeholder="Username" formControlName="username" >
+          <label for="username">Username</label>
+          <div class="text-danger form-text"   *ngIf="usernameTouched &&  usernameRequired">Required Field!</div>
+          <div class="text-danger form-text"   *ngIf="usernameTouched && !usernameRequired &&!usernameValid">At least 8 digits!</div>
+          <div class="text-success form-text" *ngIf="!usernameRequired && usernameValid">Looks Good!</div>
+        </div>
+
+        <div class="form-floating">
+          <input type="text" class="form-control" id="address" placeholder="address" formControlName="address">
+          <label for="address">Address</label>
+          <div class="text-danger form-text"   *ngIf="addressTouched &&  addressRequired">Required Field!</div>
+          <div class="text-danger form-text"   *ngIf="addressTouched && !addressRequired &&!addressValid">At least 8 digits!</div>
+          <div class="text-success form-text" *ngIf="!addressRequired && addressValid">Looks Good!</div>
+        </div>
+
+        <div class="form-floating">
+          <input type="text" class="form-control" id="phone" placeholder="phone" formControlName="phone">
+          <label for="phone">Phone</label>
+          <div class="text-danger form-text"   *ngIf="phoneTouched &&  phoneRequired">Required Field!</div>
+          <div class="text-danger form-text"   *ngIf="phoneTouched && !phoneRequired &&!phoneValid">Phone Must be 11 digits!</div>
+          <div class="text-success form-text" *ngIf="!phoneRequired && phoneValid">Looks Good!</div>
+        </div>
+
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email">
+          <label for="floatingInput">Email address</label>
+          <div class="text-danger form-text" *ngIf="emailTouched && emailRequired">Required Field!</div>
+          <div class="text-danger form-text" *ngIf="emailTouched && !emailRequired &&!emailValid">Wrong Email!</div>
+          <div class="text-success form-text" *ngIf="!emailRequired && emailValid">Looks Good!</div>
+        </div>
+
+          <div class="d-flex justify-content-md-space-between justify-content-center row my-3">
+
+              <button class="col-12 col-md-4 btn btn-dark" (click)="OnSubmit($event)">
+                Update Information
+              </button>
+
+
+              <button class="col-12 col-md-4 btn btn-dark" (click)="openForm()" >
+                Delete Account
+              </button>
+              <div class="overlay" id="overlay">
+                <div class="form-contain col-6">
+                    <form class="shadow p-4 " [formGroup]="passwordForm">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="name" placeholder="name" formControlName="password">
+                            <label for="name">Password</label>
+                            <div class="text-danger form-text" *ngIf="passwordTouched && passwordRequired">Required Field!</div>
+                            <div class="text-danger form-text" *ngIf="passwordTouched && !passwordRequired && !passwordValid">At least 8
+                              Digits!</div>
+                            <div class="text-success form-text" *ngIf="!passwordRequired && passwordValid">Looks Good!</div>
+                        </div>
+                    <button class="btn btn-dark text-white w-100 py-3 mt-4" type="submit" (click)="deleteUser()">Delete</button>
+                    <button class="btn btn-dark text-white w-100 py-3 mt-4" type="submit" (click)="closeForm()">Close</button>
+                    </form>
+                </div>
+              </div>
+
+              <button class="col-12 col-md-4 btn btn-dark" routerLink="/Changepassword">
+                Change Password
+              </button>
+
+          </div>
+
+        </form>
+
+    </div>
+    </div>

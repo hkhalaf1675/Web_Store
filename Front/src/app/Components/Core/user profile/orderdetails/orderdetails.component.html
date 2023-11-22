@@ -1,0 +1,64 @@
+<div class="container-fluid row d-flex justify-content-center m-0 p-0">
+
+  <div class="col-12 col-md-5 d-flex justify-content-md-start justify-content-center">
+    <app-profile></app-profile>
+  </div>
+
+  <div class="col-12 col-md-7  bg-light d-flex align-items-center justify-content-center">
+    <div class="container-fluid px-5 my-3">
+      <div class="d-flex justify-content-between gap-6 mt-5 " >
+          <div class="w-100">
+              <h2>Order Details</h2>
+              <div class="card my-3 p-3" style="width: 100%;">
+                  <table class="table table-borderless mt-2">
+                      <thead class="border-bottom">
+                          <tr>
+                              <th class="whitespace-nowrap">Order Details</th>
+                              <th class="whitespace-nowrap"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr class="intro-x">
+                              <td class="w-40">
+                                  <p class="card-text"><strong>User Name:</strong> {{Order.userName}}</p>
+                                  <p class="card-text"><strong>Address:</strong> {{Order.address}}</p>
+                                  <p class="card-text"><strong>Products:</strong> {{Order.products.length}}</p>
+                              </td>
+                              <td class="w-40">
+                                  <p class="card-text"><strong>Total Price:</strong> {{Order.totalPrice}}</p>
+                                  <p class="card-text"><strong>Date:</strong> {{Order.date}}</p>
+                                  <p class="card-text"><strong>Status:</strong> {{getOrderStatusName(Order.status)}}</p>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+
+      <div class="card-group my-3 d-grid" >
+          <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-6 mt-3" *ngFor="let item of Order.products">
+                  <div class="card">
+                    <div id="img" class="card-img-top">
+                      <img class="img-fluid" src="{{item.images[0] ? item.images[0] : 'assets/Images/NotFound.png'}}" height="200px" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                          <h5 class="card-title">{{item.name}}</h5>
+                          <!-- <p class="card-text">Price: {{item.quantity}} * {{item.productPrice - (item.productPrice *
+                              (item.discount/100))}} = {{item.quantity * (item.productPrice - (item.productPrice *
+                              (item.discount/100)))}}</p> -->
+                          <a class="btn btn-dark m-3"
+                              routerLink="/products/details/{{item.id}}">Product
+                              Details</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="d-grid gap-2 d-md-block">
+          <a class="btn btn-dark m-3" routerLink="/orders"><i class="bi bi-skip-backward"></i> Back To Orders</a>
+      </div>
+  </div>
+  </div>

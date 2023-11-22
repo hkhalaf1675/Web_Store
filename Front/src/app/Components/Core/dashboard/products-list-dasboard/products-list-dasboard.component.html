@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <app-adminaside></app-adminaside>
+    </div>
+    <div class="col-12 col-md-9">
+            <div class="m-2">
+                <button [routerLink]="['/products/new']" class="btn btn-dark"><i class="bi bi-plus"></i> New Product</button>
+            </div>
+            <hr>
+
+            <div style="min-height: 70vh;">
+              <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">price</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let prod of products; let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{prod.name}}</td>
+                        <td>{{prod.price}}</td>
+                        <td>
+                            <i class="bi text-primary fs-4 bi-info-circle" [routerLink]="['/products','details',prod.id]"></i> |
+                            <i class="bi text-warning fs-4 bi-pencil-square" [routerLink]="['/products/edit',prod.id]"></i> |
+                            <i class="bi text-danger fs-4 bi-trash" (click)="DeleteProduct(prod.id)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <!-- ------ Pageination Buttons --------------- -->
+            <div class="w-50 m-auto text-center">
+                <button class="ination btn btn-dark" (click)="prev()">Prev</button>
+                <button class="ination btn btn-light"> [ {{currentIndex}} ] </button>
+                <button class="ination btn btn-dark" (click)="next()">Next</button>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</div>

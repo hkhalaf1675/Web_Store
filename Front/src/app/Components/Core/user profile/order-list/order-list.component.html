@@ -1,0 +1,42 @@
+<div class="container-fluid row d-flex mt-2 mb-5">
+
+  <div class="col-12 col-md-5 d-flex justify-content-md-start justify-content-center">
+    <app-profile></app-profile>
+  </div>
+
+  <div class="col-12 col-md-7 bg-light d-flex align-items-center justify-content-center">
+    <div class="shadow  w-100" style="min-height: 80dvh; overflow: auto;">
+      <div class="fs-2 text-center">Orders</div>
+      <br>
+      <div class="col-lg-8" class="m-3">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Order Date</th>
+              <th scope="col">User Name</th>
+              <th scope="col">Status</th>
+              <th scope="col">Products</th>
+              <th scope="col">Total Price</th>
+              <th scope="col">Details</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders; let i = index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{order.date}}</td>
+              <td>{{order.userName}}</td>
+              <td>{{getOrderStatusName(order.status)}}</td>
+              <td>{{order.products.length}}</td>
+              <td>{{order.totalPrice}}</td>
+              <td>
+                  <i class="bi text-primary fs-4 bi-info-circle" [routerLink]="['/orderdetails',order.orderId]" ></i>
+              </td>
+          </tr>
+          </tbody>
+        </table>
+        </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <app-adminaside></app-adminaside>
+    </div>
+    <div class="col-12 col-md-9">
+
+      <!-------------------  form ------------------- -->
+      <div class="overlay " id="overlay">
+        <div class="form-container">
+          <form class="shadow p-4 " [formGroup]="fg">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="name" placeholder="name" formControlName="name">
+              <label for="name">Category Name</label>
+              <div class="text-danger form-text" *ngIf="nameTouched &&  nameRequired">Required Field!</div>
+              <div class="text-danger form-text" *ngIf="nameTouched && !nameRequired &&!nameValid">Required Field !
+              </div>
+              <div class="text-success form-text" *ngIf="!nameRequired && nameValid">Looks Good!</div>
+            </div>
+            <button class="btn btn-dark text-white w-100 py-3 mt-4" type="submit" (click)="OnSubmit($event)"><i
+                class="bi bi-check-circle-fill"> Save</i></button>
+            <button class="btn btn-dark text-white w-100 py-3 mt-4" type="submit" (click)="closeForm()"><i
+                class="bi bi-x-circle-fill"> Cancel</i></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="m-2">
+        <button (click)="openForm(0)" class="btn btn-dark m-3"><i class="bi bi-plus"></i> Add Category</button>
+      </div>
+
+      <!-------------------  Category table ------------------- -->
+      <table class="table ">
+        <thead>
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Name</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let cat of cats; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{cat.name}}</td>
+            <td>
+              <i class="bi text-warning fs-4 bi-pencil-square" (click)="openForm(cat.id)"></i> |
+              <i class="bi text-danger fs-4 bi-trash" (click)="delete(cat.id)"></i>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <br><br>
+    </div>
+  </div>
+</div>

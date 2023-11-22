@@ -1,0 +1,50 @@
+<div class="container-fluid row d-flex mt-2 mb-5">
+
+  <div class="col-12 col-md-5 d-flex justify-content-md-start justify-content-center">
+    <app-profile></app-profile>
+  </div>
+
+  <div class="col-12 col-md-7 bg-light d-flex align-items-center justify-content-center">
+
+
+    <div class="shadow p-1  w-100" style="min-height: 80dvh;">
+      <div class="fs-2 text-center">Phones</div>
+      <br>
+      <div class="text-center ">
+        <button class="btn btn-dark  text-center w-50" [routerLink]="['add']">
+          Add
+        </button>
+      </div>
+      <div class="col-lg-8" class="m-3">
+
+
+
+        <table class="table">
+          <thead>
+            <tr>
+
+              <th scope="col">#</th>
+              <th scope="col" class="w-75">Phones</th>
+              <th scope="col"></th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let item of phones; let i = index">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{item.phoneNumber}}</td>
+              <td>
+                <button class="btn btn-dark" (click)="DeletePhone(item.phoneNumber)">Remove</button>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

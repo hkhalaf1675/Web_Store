@@ -1,0 +1,39 @@
+<div class="container d-flex justify-content-space-between m-0 p-0">
+
+  <div class="col-12 col-md-5 d-flex justify-content-md-start justify-content-center">
+    <app-profile></app-profile>
+  </div>
+
+  <div class="col-12 col-md-7 bg-light d-flex align-items-center justify-content-center">
+    <form class="shadow p-4" [formGroup]="fg" >
+
+      <div class=" mb-sm-5 bg-light coolinput mx-5 ">
+
+        <div class="form-floating m-2">
+          <input type="text" class="form-control" id="street" placeholder="Street" formControlName="street">
+          <label for="street">Street</label>
+          <div class="text-danger form-text" *ngIf="streetTouched &&  streetRequired">Required Field!</div>
+          <div class="text-danger form-text" *ngIf="streetTouched && !streetRequired &&!streetValid">At least 5 digits!</div>
+          <div class="text-success form-text" *ngIf="!streetRequired && streetValid">Looks Good!</div>
+        </div>
+        <div class="form-floating m-2">
+          <input type="text" class="form-control" id="city" placeholder="City" formControlName="city">
+          <label for="city">City</label>
+          <div class="text-danger form-text" *ngIf="cityTouched &&  cityRequired">Required Field!</div>
+          <div class="text-danger form-text" *ngIf="cityTouched && !cityRequired &&!cityValid">At least 5 digits!</div>
+          <div class="text-success form-text" *ngIf="!cityRequired && cityValid">Looks Good!</div>
+        </div>
+
+        <div class="form-floating m-2">
+          <input type="text" class="form-control" id="country" placeholder="Country" formControlName="country">
+          <label for="country">Country</label>
+          <div class="text-danger form-text" *ngIf="countryTouched &&  countryRequired">Required Field!</div>
+          <div class="text-danger form-text" *ngIf="countryTouched && !countryRequired &&!countryValid">Phone Must be 11 digits!</div>
+          <div class="text-success form-text" *ngIf="!countryRequired && countryValid">Looks Good!</div>
+        </div>
+
+        <button class="btn btn-dark text-white w-100 py-3 mt-4" type="submit" (click)="onSubmit($event)" >Add</button>
+      </div>
+    </form>
+  </div>
+</div>
